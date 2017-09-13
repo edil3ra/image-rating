@@ -6,6 +6,6 @@ export default class App extends React.Component {
     return (
      <div style={{textAlign: 'center'}}>
         <h2>Hello World tehot teh</h2>
-      </div>);
+      </div>)
   }
 }
