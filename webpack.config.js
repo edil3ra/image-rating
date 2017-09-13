@@ -2,10 +2,6 @@ var webpack = require('webpack')
 var path = require('path')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
-var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-    template: __dirname + '/app/index.html'
-})
-var HotModuleReplacementConfig = new webpack.HotModuleReplacementPlugin()
 
 module.exports = {
     devtool: 'eval-source-map',
@@ -22,12 +18,11 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                exclude: /node_modules/,
                 loader: 'babel-loader',
             },
             {
                 test: /\.css$/,
-                loader: 'style-loader!css-loader?modules',
+                loader: 'style-loader!css-loader',
             },
             {
 				test: /\.woff(2)?(\?[a-z0-9#=&.]+)?$/,
@@ -42,7 +37,17 @@ module.exports = {
     devServer: {
         historyApiFallback: true,
         inline: true,
-        hot: true
+        hot: true,
     },
-    plugins: [HtmlWebpackPluginConfig, HotModuleReplacementConfig]
+    plugins: [
+		new HtmlWebpackPlugin({
+			template: __dirname + '/app/index.html',
+		}),
+		new webpack.HotModuleReplacementPlugin(),
+		new webpack.ProvidePlugin({
+			$: 'jquery',
+			jQuery: 'jquery',
+		})
+		
+	]
 }

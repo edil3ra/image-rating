@@ -24,7 +24,6 @@ module.exports = {
             {
                 test: /\.css$/,
 				loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules'),
-				loader: 'style-loader!css-loader?modules',
             },
             {
 				test: /\.woff(2)?(\?[a-z0-9#=&.]+)?$/,
