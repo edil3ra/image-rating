@@ -6,6 +6,11 @@ import * as actions from './actions'
 import storeFactory from './utils/storeFactory'
 import { Provider } from 'react-redux'
 
+import 'materialize-css/dist/css/materialize.css'
+import 'materialize-css/dist/js/materialize'
+
+
+
 const store = storeFactory()
 window.store = store
 window.actions = actions

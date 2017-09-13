@@ -18,17 +18,25 @@ module.exports = {
         loaders: [
             {
                 test: /\.json$/,
-                loader: 'json-loader'
+                loader: 'json-loader',
             },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader'
+                loader: 'babel-loader',
             },
             {
                 test: /\.css$/,
-                loader: 'style!css?modules'
-            }
+                loader: 'style-loader!css-loader?modules',
+            },
+            {
+				test: /\.woff(2)?(\?[a-z0-9#=&.]+)?$/,
+				loader: 'url-loader?limit=10000&mimetype=application/font-woff',
+			},
+            {
+				test: /\.(ttf|eot|svg)(\?[a-z0-9#=&.]+)?$/,
+				loader: 'file-loader',
+			}
         ]
     },
     devServer: {

@@ -14,23 +14,37 @@ module.exports = {
         loaders: [
             {
                 test: /\.json$/,
-                loader: 'json-loader'
+                loader: 'json-loader',
             },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader'
+                loader: 'babel-loader',
             },
             {
                 test: /\.css$/,
-				loader: ExtractTextPlugin.extract('style', 'css?modules')
-            }
+				loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules'),
+				loader: 'style-loader!css-loader?modules',
+            },
+            {
+				test: /\.woff(2)?(\?[a-z0-9#=&.]+)?$/,
+				loader: 'url-loader?limit=10000&mimetype=application/font-woff',
+			},
+            {
+				test: /\.(ttf|eot|svg)(\?[a-z0-9#=&.]+)?$/,
+				loader: 'file-loader',
+			}
         ]
     },
 
     plugins: [
 		new HtmlWebpackPlugin({
 			template: __dirname + "/app/index.html"
+		}),
+		new webpack.DefinePlugin({
+			'process.env': {
+				NODE_ENV: JSON.stringify('production')
+			}
 		}),
 		new webpack.optimize.OccurrenceOrderPlugin(),
 		new webpack.optimize.UglifyJsPlugin(),
