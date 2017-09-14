@@ -6,7 +6,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
     entry: __dirname + '/app/index.js',
     output: {
-        path: __dirname + '/build',
+        path: __dirname + '/server/static',
         filename: '[name]-[hash].js'
     },
 
@@ -23,7 +23,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-				loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules'),
+                loader: 'style-loader!css-loader',
             },
             {
 				test: /\.woff(2)?(\?[a-z0-9#=&.]+)?$/,

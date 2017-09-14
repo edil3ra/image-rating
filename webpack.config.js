@@ -39,12 +39,22 @@ module.exports = {
         historyApiFallback: true,
         inline: true,
         hot: true,
+		host: 'localhost',
+		port: 3000,
+		proxy: {
+			'/api': {
+				target: 'http://localhost:8080',
+				secure: false
+			}
+		}
     },
     plugins: [
 		new HtmlWebpackPlugin({
 			template: __dirname + '/app/index.html',
 		}),
-		new webpack.HotModuleReplacementPlugin(),
+		new webpack.HotModuleReplacementPlugin({
+			multiStep: true
+		}),
 		new webpack.ProvidePlugin({
 			$: 'jquery',
 			jQuery: 'jquery',

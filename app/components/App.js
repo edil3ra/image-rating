@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Image from 'react-image'
-import { imageFetch } from '../utils/apiCall'
+import { fetchImages } from '../utils/helpers'
 import { URL_EXAMPLE } from '../utils/constants'
 import Dropzone from 'react-dropzone'
 
@@ -10,6 +10,11 @@ export default class App extends React.Component {
         super(props)
         this.state = {}
         this.onDrop = this.onDrop.bind(this)
+
+		fetchImages().then(response => {
+			console.log(response.text())
+		})
+		
     }
 
     onDrop(accepted, rejected) {
