@@ -1,23 +1,32 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
+import Image from 'react-image'
+import { imageFetch } from '../utils/apiCall'
+import { URL_EXAMPLE } from '../utils/constants'
+import Dropzone from 'react-dropzone'
 
 export default class App extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {}
+        this.onDrop = this.onDrop.bind(this)
+    }
+
+    onDrop(accepted, rejected) {
+        console.log(accepted)
+        console.log(rejected)
+    }
+
     render() {
         return (
-            <div className="row">
-				    <div className="card-panel teal lighten-2">This is a card panel with a teal lighten-2 class</div>
-
-                <div className="col s1">1</div>
-                <div className="col s1">2</div>
-                <div className="col s1">3</div>
-                <div className="col s1">4</div>
-                <div className="col s1">5</div>
-                <div className="col s1">6</div>
-                <div className="col s1">7</div>
-                <div className="col s1">8</div>
-                <div className="col s1">9</div>
-                <div className="col s1">10</div>
-                <div className="col s1">11</div>
-                <div className="col s1">12</div>
+            <div className="container">
+                <Dropzone
+                    disablePreview={true}
+                    multiple={false}
+                    onDrop={this.onDrop}
+                    accept="image/*"
+                />
+                <Image src={this.path} alt="some text" />
             </div>
         )
     }
