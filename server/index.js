@@ -5,6 +5,8 @@ var cors = require('cors')
 var path = require('path')
 var Loki = require('lokijs')
 var utils = require('./utils')
+var bodyParser = require('body-parser')
+
 
 
 
@@ -17,47 +19,41 @@ var db = new Loki(`${DB_NAME}`, { persistenceMethod: 'fs' })
 
 
 var app = express()
+app.use(bodyParser.json())
 
 
-// app.get('/images', function (req, res) => {
-//     try {
-//         const col = await loadCollection(COLLECTION_IMAGE, db);
-//         res.send(col.data);
-//     } catch (err) {
-//         res.sendStatus(400);
-//     }
-// })
+app.get('/images', function(req, res) {
+    try {
+        utils.loadCollection(COLLECTION_IMAGE, db).then(function(collection){
+			res.send(collection.data.map(function(item) {
+				return utils.serializeLoki(item)
+			}));
+		})
+    } catch (err) {
+        res.sendStatus(404);
+    }
+})
 
-
-
-// app.post('/images', upload.single('image'), function(req, res) {
-// 	try {
-// 		console.log('on try')
-// 		utils.loadCollection(COLLECTION_IMAGE, db).then(function(collection){
-// 			var data = collection.insert(req.file)
-// 			console.log('i before after save database')
-// 			db.saveDatabase()
-// 			console.log('i passe after save database')
-// 			res.send({ id: data.$loki, fileName: data.filename, originalName: data.originalname })
-// 		})
-// 	} catch(err) {
-// 		console.log('on catch')
-// 		res.sendStatus(400)
-// 	}
-// })
 
 
 app.post('/images', function(req, res) {
 	upload.single('image')(req, res, function(err) {
 		if(err) {
 			return res.sendStatus(400)
-			
 		}
 		try {
 			utils.loadCollection(COLLECTION_IMAGE, db).then(function(collection){
-				var data = collection.insert(req.file)
+				
+				var dataToInsert = {
+					filename: req.file.filename,
+					originalName: req.file.originalname,
+					mimetype: req.file.mimetype,
+					scores: [],
+				}
+				var data = collection.insert(dataToInsert)
 				db.saveDatabase()
-				res.send({ id: data.$loki, fileName: data.filename, originalName: data.originalname })
+
+				res.send(utils.serializeLoki(data))
 			})
 		} catch(err) {
 			res.sendStatus(400)
@@ -66,6 +62,79 @@ app.post('/images', function(req, res) {
 })
 
 
+app.get('/images/:id', function(req, res) {
+    try {
+		utils.loadCollection(COLLECTION_IMAGE, db).then(function(collection){
+			const data = collection.get(req.params.id);
+			if (!data) {
+				res.sendStatus(404);
+				return
+			}
+			res.send(utils.serializeLoki(data))
+		})
+    } catch (err) {
+        res.sendStatus(400);
+    }
+})
+
+
+app.delete('/images/:id', function(req, res) {
+    try {
+		utils.loadCollection(COLLECTION_IMAGE, db).then(function(collection){
+			const data = collection.get(req.params.id);
+			if (!data) {
+				res.sendStatus(404);
+				return
+			}
+			collection.remove(data)
+			db.saveDatabase()
+			res.sendStatus(200)
+		})
+    } catch (err) {
+        res.sendStatus(400);
+    }
+})
+
+
+app.put('/images/:id', function(req, res) {
+    try {
+		utils.loadCollection(COLLECTION_IMAGE, db).then(function(collection){
+			const data = collection.get(req.params.id);
+			if (!data) {
+				res.sendStatus(404);
+				return
+			}
+			console.log(req)
+			data['originalName'] = req.body.originalName || data[originalName]
+			data['scores'] = req.body.scores || data[scores]
+			db.saveDatabase() 
+			res.sendStatus(200)
+		})
+    } catch (err) {
+        res.sendStatus(400);
+    }
+})
+
+
+
+
+
+
+app.get('/images/:id/stream', function(req, res) {
+    try {
+		utils.loadCollection(COLLECTION_IMAGE, db).then(function(collection){
+			const data = collection.get(req.params.id);
+			if (!data) {
+				res.sendStatus(404);
+				return
+			}
+			res.setHeader('Content-Type', data.mimetype);
+			fs.createReadStream(path.join(UPLOAD_PATH, data.filename)).pipe(res);
+		})
+    } catch (err) {
+        res.sendStatus(400);
+    }
+})
 
 
 

@@ -35,5 +35,6 @@
 * helpers
 ** store an image in the express server
   http get :3000/images 
+  http get :3000/images/1/stream
   http post :3000/images image@~/Pictures/1.png --form
   http post :3000/images image@~/Downloads/05db7df4f31840f0a873d6ea14dcc28d.pdf --form

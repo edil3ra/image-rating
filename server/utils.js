@@ -20,8 +20,22 @@ var imageFilter = function (req, file, cb) {
 }
 
 
+var cleanFolder = function (folderPath) {
+    del.sync([`${folderPath}/**`, `!${folderPath}`]);
+};
+
+var serializeLoki = function(item) {
+	item['id'] = item['$loki']
+	delete item['$loki']
+	delete item['meta']
+	return item
+}
+
+
 module.exports = {
 	loadCollection: loadCollection,
 	imageFilter: imageFilter,
+	cleanFolder: cleanFolder,
+	serializeLoki: serializeLoki,
 }
 
