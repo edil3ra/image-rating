@@ -10,3 +10,5 @@ vr4MkhoXe0rZigAAAABJRU5ErkJggg==" alt="Red dot" />
 
 * dropzone
   <Dropzone onDrop={this.onDrop} accept="image/png" />
+
+  http post :3000/images image@~/Pictures/1.png --form
