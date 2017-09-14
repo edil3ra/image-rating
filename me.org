@@ -1,14 +1,39 @@
-* blob image
-<img src="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABGdBTUEAALGP
-C/xhBQAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9YGARc5KB0XV+IA
-AAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAF1J
-REFUGNO9zL0NglAAxPEfdLTs4BZM4DIO4C7OwQg2JoQ9LE1exdlYvBBeZ7jq
-ch9//q1uH4TLzw4d6+ErXMMcXuHWxId3KOETnnXXV6MJpcq2MLaI97CER3N0
-vr4MkhoXe0rZigAAAABJRU5ErkJggg==" alt="Red dot" />
 
 
-* dropzone
-  <Dropzone onDrop={this.onDrop} accept="image/png" />
+* Introduction
+  Image-rating is a small application where anybody can upload images and rate they favorite ones
 
+* Install  
+  npm install
+  npm start -- for developing
+  npm build  --for production 
+  
+
+* Technical side
+** backend
+*** express
+	I choose express to store images and informations on them, express is a very good choice for a small app like this.
+	The database is one json file, I used locki to store collection to my db.
+	In a real app mongo should be used, bot for now file persintig database is good engough.
+	Image are sorted in locals.
+	The image hame no processing except for the checking of file type.
+	In real app i will used a service like cloudinary or create my own processing image service.
+  
+
+
+** front
+*** Materialize
+   I Choose materialize because, it is one of the fastest way to get a good looking web app without too much work
+*** React
+   I choose react because it's a good choice for small project like this.
+   I took 2 react library to create the the dropzone and to display the image
+*** Redux
+   I choose redux to manage all the state of the app, it's overkill for smal project but redux is really convenient to manage states
+
+
+
+* helpers
+** store an image in the express server
+  http get :3000/images 
   http post :3000/images image@~/Pictures/1.png --form
+  http post :3000/images image@~/Downloads/05db7df4f31840f0a873d6ea14dcc28d.pdf --form
