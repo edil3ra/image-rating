@@ -104,9 +104,18 @@ app.put('/images/:id', function(req, res) {
 				res.sendStatus(404);
 				return
 			}
-			console.log(req)
-			data['originalName'] = req.body.originalName || data[originalName]
-			data['scores'] = req.body.scores || data[scores]
+			console.log(data)
+			console.log(req.body)
+			
+			if(req.body['originalName'] !== undefined && req.body['originalName'] !== null) {
+				data['originalName'] = req.body['originalName']
+			}
+			
+			if(req.body['scores'] !== undefined && req.body['scores'] !== null) {
+				data['scores'] = req.body['scores']
+			}
+			
+
 			db.saveDatabase() 
 			res.sendStatus(200)
 		})
