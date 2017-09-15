@@ -1,5 +1,3 @@
-
-
 * Introduction
   Image-rating is a small application where anybody can upload images and rate they favorite ones
 
@@ -8,7 +6,6 @@
   npm start -- for developing
   npm build  --for production 
   
-
 * Technical side
 ** backend
 *** express
@@ -31,13 +28,14 @@
    I choose redux to manage all the state of the app, it's overkill for smal project but redux is really convenient to manage states
 
 
-
 * helpers
 ** kill db and images
    rm -rf ./server/uploads/* server/db.json
+   [[random.choice(range(1, 6)) for y in range(random.randint(0, 10))] for i in range(10)] // create random choices list
 
 ** api test with httpie
-   http post :3000/api/images image@~/Pictures/1.png --form
+   http post :8080/api/images image@./images_mock/24888793474_0c72120d22_m.jpg --form && http post :8080/api/images image@./images_mock/36674393256_0bf9e8b68f_m.jpg --form && http post :8080/api/images image@./images_mock/4618786477_b6cea108fb_z.jpg --form && http post :8080/api/images image@./images_mock/35909960083_468dfe33d4_z.jpg --form && http post :8080/api/images image@./images_mock/36674393436_4ea3a9bc5b_z.jpg --form && http post :8080/api/images image@./images_mock/5503173238_061a4e233d_m.jpg --form && http post :8080/api/images image@./images_mock/36325395070_6c23299b43_z.jpg --form && http post :8080/api/images image@./images_mock/36676372256_9357fd5f04_z.jpg --form && http post :8080/api/images image@./images_mock/36585352871_2095afa289_m.jpg --form && http post :8080/api/images image@./images_mock/36677993176_07857a65fd_z.jpg --form
+
    http get :3000/api/images 
    http get :3000/api/images/1/stream
    http get :3000/api/images/1
@@ -45,3 +43,5 @@
    http delete :3000/api/images/1
    http post :3000/api/images image@~/Downloads/05db7df4f31840f0a873d6ea14dcc28d.pdf --form (should send 400)
   
+
+

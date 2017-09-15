@@ -7,11 +7,13 @@ var Loki = require('lokijs')
 var utils = require('./utils')
 var bodyParser = require('body-parser')
 
+
+
 var DB_NAME = 'db.json'
 var COLLECTION_IMAGE = 'images'
 var UPLOAD_PATH = 'uploads'
-var upload = multer({ dest: `${UPLOAD_PATH}/`, fileFilter: utils.imageFilter })
-var db = new Loki(`${DB_NAME}`, { persistenceMethod: 'fs' })
+var upload = multer({ dest: path.join(__dirname, UPLOAD_PATH), fileFilter: utils.imageFilter })
+var db = new Loki(path.join(__dirname, DB_NAME), { persistenceMethod: 'fs' })
 
 var app = express()
 
