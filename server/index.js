@@ -50,7 +50,8 @@ app.post('/api/images', function(req, res) {
                         filename: req.file.filename,
                         originalName: req.file.originalname,
                         mimetype: req.file.mimetype,
-                        scores: []
+						timestamp: Date.now(),
+                        rates: []
                     }
                     var data = collection.insert(dataToInsert)
                     db.saveDatabase()
@@ -103,8 +104,6 @@ app.put('/api/images/:id', function(req, res) {
                 res.sendStatus(404)
                 return
             }
-            console.log(data)
-            console.log(req.body)
 
             if (
                 req.body['originalName'] !== undefined &&
@@ -114,10 +113,10 @@ app.put('/api/images/:id', function(req, res) {
             }
 
             if (
-                req.body['scores'] !== undefined &&
-                req.body['scores'] !== null
+                req.body['rates'] !== undefined &&
+                req.body['rates'] !== null
             ) {
-                data['scores'] = req.body['scores']
+                data['rates'] = req.body['rates']
             }
 
             db.saveDatabase()
