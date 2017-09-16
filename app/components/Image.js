@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Img from 'react-image'
+
+
 
 const Image = ({ src, width, height }) => {
-    return <Img width={width} height={height} src={src} />
+    return <img className="materialboxed" width={width} height={height} src={src} />
 }
 
 Image.propTypes = {

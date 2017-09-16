@@ -12,15 +12,6 @@ import {
 } from '../utils/constants'
 
 const Gallery = ({ images }) => {
-    const renderImages = images.map(({ id, filename }) => (
-        <Image
-            key={id}
-            src={'upload/' + filename}
-            width={DEFAULT_GALLERY_IMAGE_WIDTH}
-            height={DEFAULT_GALLERY_IMAGE_HEIGHT}
-        />
-    ))
-
     const renderImage = ({ filename }) => {
         return (
             <Image
@@ -35,15 +26,6 @@ const Gallery = ({ images }) => {
         return <Star filled={filled} />
     }
 
-    // const renderGallery = ({ id, filename, rates }) => {
-    //     return (
-    //         <div key={id} className={DEFAULT_GALLERY_COLUMN}>
-    //             {renderImage({ filename: filename })}
-    //             {renderStar({ filled: true })}
-    //         </div>
-    //     )
-    // }
-
     const renderGallery = images.map(({ id, filename, rates }) => {
         const column = `col s${DEFAULT_COLUMN_ROW_SIZE}`
         const ratesCount = rates.length
@@ -53,9 +35,14 @@ const Gallery = ({ images }) => {
                 : rates.reduce((initial, next) => initial + next, 0) /
                   ratesCount
 
+        const onClickRate = rate => {
+            console.log(id)
+            console.log(rate)
+        }
+
         return (
             <div key={id} className={column}>
-                <div className="card">
+                <div className="card hoverable">
                     <div className="card-image">
                         <div>{renderImage({ filename: filename })}</div>
                     </div>
@@ -63,6 +50,7 @@ const Gallery = ({ images }) => {
                         <div style={{ overflow: 'hidden' }}>
                             <div className="left">
                                 <Stars
+                                    onClick={onClickRate}
                                     starCount={DEFAULT_START_COUNT}
                                     filledCount={Math.floor(ratesAverage)}
                                 />

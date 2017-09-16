@@ -6,10 +6,13 @@ const Stars = ({ starCount, filledCount, onClick = f => f }) => {
     const renderStars = Array(starCount)
         .fill()
         .map((_, index) => {
-			console.log(index)
+			const f = () => {
+				onClick(index + 1)
+			}
+			
             return (
                 <div key={index} className="left">
-                    <Star filled={index < filledCount} />
+                    <Star onClick={f} filled={index < filledCount} />
                 </div>
             )
         })

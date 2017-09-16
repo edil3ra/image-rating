@@ -11,6 +11,10 @@ import 'materialize-css/dist/js/materialize'
 import './style.css'
 
 
+$(document).ready(function(){
+    $('.materialboxed').materialbox();
+});
+
 const store = storeFactory()
 window.store = store
 window.actions = actions
