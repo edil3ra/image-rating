@@ -18,6 +18,8 @@ $(document).ready(function(){
 const store = storeFactory()
 window.store = store
 window.actions = actions
+store.dispatch(actions.fetchImages())
+
 
 const app = (
     <Provider store={store}>

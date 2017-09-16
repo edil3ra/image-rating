@@ -7,6 +7,7 @@ import Gallery from './Gallery'
 window.jQuery = window.$ = require('jquery')
 
 
+
 const App = () => {
     const images = [
         {
@@ -76,7 +77,6 @@ const App = () => {
         <div className="container">
             <Drop onAccepted={f => f} onRejected={f => f} />
             <Gallery images={images} />
-
         </div>
     )
 }

@@ -36,7 +36,8 @@ store.dispatch(actions.addImage({id: 11, filename: 'filename', originalname: 'or
 
 store.dispatch(actions.updateImage({id: 11, filename: 'filenameUpdate', originalname: 'originalnameUpdate', rate: [1, 2], timestamp: 100}))
 
-store.dispatch(actions.deleteImage(11))
+store.dispatch(actions.fetchImages())
+
 
 
 
