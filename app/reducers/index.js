@@ -32,7 +32,7 @@ const images = (state = {}, action) => {
         case DELETE_IMAGE:
             return omit(state, action.id)
         case RECIEVE_IMAGES:
-            return action.images
+            return toObj(action.images)
         default:
             return state
     }

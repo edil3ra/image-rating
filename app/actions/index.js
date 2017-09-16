@@ -46,6 +46,7 @@ export const fetchImages = () => {
     return function(dispatch) {
         dispatch(requestImages())
         return fetchJson('api/images').then(json => {
+			console.log(json)
             dispatch(recieveImages(json))
         })
     }

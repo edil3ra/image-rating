@@ -10,16 +10,14 @@ import 'materialize-css/dist/css/materialize.css'
 import 'materialize-css/dist/js/materialize'
 import './style.css'
 
-
-$(document).ready(function(){
-    $('.materialboxed').materialbox();
-});
+$(document).ready(function() {
+    $('.materialboxed').materialbox()
+})
 
 const store = storeFactory()
 window.store = store
 window.actions = actions
 store.dispatch(actions.fetchImages())
-
 
 const app = (
     <Provider store={store}>

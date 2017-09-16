@@ -12,7 +12,7 @@ export const toArray = obj => {
     return Object.keys(obj).map(k => obj[k])
 }
 
-export const toObj = (arr, key) => {
+export const toObj = (arr, key='id') => {
     return Object.assign(...arr.map(d => ({ [d[key]]: d })))
 }
 

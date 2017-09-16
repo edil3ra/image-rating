@@ -11,7 +11,7 @@ import {
     DEFAULT_START_COUNT
 } from '../utils/constants'
 
-const Gallery = ({ images }) => {
+const Gallery = ({ images, rateImage=f=>f }) => {
     const renderImage = ({ filename }) => {
         return (
             <Image
@@ -36,8 +36,7 @@ const Gallery = ({ images }) => {
                   ratesCount
 
         const onClickRate = rate => {
-            console.log(id)
-            console.log(rate)
+			rateImage(id, rate)
         }
 
         return (
@@ -77,7 +76,8 @@ Image.propTypes = {
             originalname: PropTypes.string,
             rates: PropTypes.arrayOf(PropTypes.number)
         })
-    )
+    ),
+	rateImage: PropTypes.func
 }
 
 export default Gallery

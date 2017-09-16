@@ -20,6 +20,7 @@ def parse_images(images):
         image['id']: {
             'id': image['id'],
             'originalname': image['originalname'],
+            'mimetype': image['mimetype'],
             'timestamp': image['timestamp'],
             'filename': image['filename'],
             'rates': image['rates']
@@ -36,10 +37,14 @@ def parse_entities():
 def main():
     entities = parse_entities()
     display_images = [key for key in entities['images']]
-
+    isFetching = {
+        'image': False,
+    }
+    
     state = {
         'entities': entities,
         'displayImages': display_images,
+        'isFetching': isFetching
     }
 
     entities_stringify = json.dumps(state, indent=4, separators=(',', ':'))
