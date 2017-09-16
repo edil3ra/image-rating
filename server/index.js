@@ -6,22 +6,29 @@ var path = require('path')
 var Loki = require('lokijs')
 var utils = require('./utils')
 var bodyParser = require('body-parser')
-
-
+var process = require('process')
 
 var DB_NAME = 'db.json'
 var COLLECTION_IMAGE = 'images'
-var UPLOAD_PATH = 'uploads'
-var upload = multer({ dest: path.join(__dirname, UPLOAD_PATH), fileFilter: utils.imageFilter })
-var db = new Loki(path.join(__dirname, DB_NAME), { persistenceMethod: 'fs' })
+var UPLOAD_NAME = 'upload'
+var STATIC_NAME = 'static'
 
+var DB_PATH = path.join(__dirname, DB_NAME)
+var STATIC_PATH = path.join(__dirname, STATIC_NAME)
+var UPLOAD_PATH = path.join(__dirname, UPLOAD_NAME)
+
+var upload = multer({
+    dest: UPLOAD_PATH,
+    fileFilter: utils.imageFilter
+})
+var db = new Loki(DB_PATH, { persistenceMethod: 'fs' })
 var app = express()
 
-app.set('port', 8080)
+app.set('port', process.env.PORT || 8080)
+
 app.use(bodyParser.json())
-app.use(express.static('static'))
-
-
+app.use(express.static(STATIC_PATH))
+app.use('/upload', express.static(UPLOAD_PATH))
 
 app.get('/api/images', function(req, res) {
     try {
@@ -50,7 +57,7 @@ app.post('/api/images', function(req, res) {
                         filename: req.file.filename,
                         originalName: req.file.originalname,
                         mimetype: req.file.mimetype,
-						timestamp: Date.now(),
+                        timestamp: Date.now(),
                         rates: []
                     }
                     var data = collection.insert(dataToInsert)
@@ -112,10 +119,7 @@ app.put('/api/images/:id', function(req, res) {
                 data['originalName'] = req.body['originalName']
             }
 
-            if (
-                req.body['rates'] !== undefined &&
-                req.body['rates'] !== null
-            ) {
+            if (req.body['rates'] !== undefined && req.body['rates'] !== null) {
                 data['rates'] = req.body['rates']
             }
 

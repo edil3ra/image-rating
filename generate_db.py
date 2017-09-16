@@ -10,7 +10,7 @@ SERVERNAME = 'http://localhost:8080'
 IMAGES_URI = 'api/images'
 
 IMAGES_MOCK_FOLDER = './server/images_mock'
-API_UPLOAD_FOLDER = './server/uploads'
+API_UPLOAD_FOLDER = './server/upload'
 API_DB = './server/db.json'
 
 
