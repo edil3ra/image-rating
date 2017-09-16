@@ -74,7 +74,7 @@ Image.propTypes = {
     images: PropTypes.arrayOf(
         PropTypes.shape({
             filename: PropTypes.string,
-            originalName: PropTypes.string,
+            originalname: PropTypes.string,
             rates: PropTypes.arrayOf(PropTypes.number)
         })
     )

@@ -1,28 +1,23 @@
-import { ADD_IMAGE, RATE_IMAGE } from '../utils/constants'
+import { ADD_IMAGE, UPDATE_IMAGE, DELETE_IMAGE } from '../utils/constants'
 
-export const addImage = (id, originalName, filename, timestamp) => {
+export const addImage = image => {
     return {
         type: ADD_IMAGE,
-        id: id,
-        filename: filename,
-        originalName: originalName,
-        timestamp: timestamp,
+		image: image
     }
 }
 
-export const rateImage = (id, rate) => {
+export const updateImage = image => {
     return {
-        type: RATE_IMAGE,
-        id: id,
-        rate: rate
+        type: UPDATE_IMAGE,
+		image: image
     }
 }
 
-
-
-function requestPosts(subreddit) {
-  return {
-    type: REQUEST_POSTS,
-    subreddit
-  }
+export const deleteImage = id => {
+    return {
+        type: DELETE_IMAGE,
+		id: id
+    }
 }
+

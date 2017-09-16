@@ -55,7 +55,7 @@ app.post('/api/images', function(req, res) {
                 .then(function(collection) {
                     var dataToInsert = {
                         filename: req.file.filename,
-                        originalName: req.file.originalname,
+                        originalname: req.file.originalname,
                         mimetype: req.file.mimetype,
                         timestamp: Date.now(),
                         rates: []
@@ -113,10 +113,10 @@ app.put('/api/images/:id', function(req, res) {
             }
 
             if (
-                req.body['originalName'] !== undefined &&
-                req.body['originalName'] !== null
+                req.body['originalname'] !== undefined &&
+                req.body['originalname'] !== null
             ) {
-                data['originalName'] = req.body['originalName']
+                data['originalname'] = req.body['originalname']
             }
 
             if (req.body['rates'] !== undefined && req.body['rates'] !== null) {

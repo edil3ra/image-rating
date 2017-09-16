@@ -20,6 +20,13 @@ export const toObj = (arr, key) => {
 }
 
 
+export const omit = (obj, key) => {
+  let res = Object.assign({}, obj)
+  delete res[key]
+  return res
+}
+
+
 export const wrapEntity = (obj, callback = f => f, key='id') => {
 	return toObj(callback(toArray(obj)), key)
 }

@@ -32,7 +32,11 @@
 
 
 ** actions
-store.dispatch(actions.addImage(12, 'test', 'original', '1111'))
+store.dispatch(actions.addImage({id: 11, filename: 'filename', originalname: 'originalname', rate: [], timestamp: 100}))
+
+store.dispatch(actions.updateImage({id: 11, filename: 'filenameUpdate', originalname: 'originalnameUpdate', rate: [1, 2], timestamp: 100}))
+
+store.dispatch(actions.deleteImage(11))
 
 
 
