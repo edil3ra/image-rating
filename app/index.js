@@ -8,7 +8,7 @@ import { Provider } from 'react-redux'
 
 import 'materialize-css/dist/css/materialize.css'
 import 'materialize-css/dist/js/materialize'
-
+import './style.css'
 
 
 const store = storeFactory()
