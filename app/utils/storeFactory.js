@@ -1,9 +1,9 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import reducers from '../reducers'
+import thunkMiddleware from 'redux-thunk'
 const initialState = require('./initialState.json')
 
-
-const logger = store => next => action => {
+const loggerMiddleware = store => next => action => {
     let result
     console.groupCollapsed('dispatching', action.type)
     console.log('prev state', store.getState())
@@ -11,10 +11,10 @@ const logger = store => next => action => {
     result = next(action)
     console.log('next state', store.getState())
     console.groupEnd()
-	return result
+    return result
 }
 
-const saver = store => next => action => {
+const saverMiddleware = store => next => action => {
     let result = next(action)
     localStorage['redux-store'] = JSON.stringify(store.getState())
     return result
@@ -27,7 +27,9 @@ const storeFactory = () => {
         localStorage['redux-store']
             ? JSON.parse(localStorage['redux-store'])
             : initialState,
-        composeEnhancers(applyMiddleware(logger, saver))
+        composeEnhancers(
+            applyMiddleware(thunkMiddleware)
+        )
     )
 }
 

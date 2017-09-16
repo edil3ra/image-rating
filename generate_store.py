@@ -20,6 +20,7 @@ def parse_images(images):
         image['id']: {
             'id': image['id'],
             'originalName': image['originalName'],
+            'timestamp': image['timestamp'],
             'filename': image['filename'],
             'rates': image['rates']
         }

@@ -28,12 +28,11 @@
 *** Redux
    I choose redux to manage all the state of the app, it's overkill for smal project but redux is really convenient to manage states
 
-
 * helpers
 
 
-
-
+** actions
+store.dispatch(actions.addImage(12, 'test', 'original', '1111'))
 
 
 

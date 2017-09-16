@@ -1,6 +1,8 @@
-export const ADD_IMAGE = ADD_IMAGE
-export const RATE_IMAGE = RATE_IMAGE
+export const ADD_IMAGE = 'ADD_IMAGE'
+export const RATE_IMAGE = 'RATE_IMAGE'
 
+export const REQUEST_IMAGES = 'REQUEST_IMAGES'
+export const RECIEVE_IMAGES = 'RECIEVE_IMAGES'
 
 
 export const DEFAULT_GALLERY_IMAGE_WIDTH = 220

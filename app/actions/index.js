@@ -1,12 +1,12 @@
-import uuid from 'uuid'
 import { ADD_IMAGE, RATE_IMAGE } from '../utils/constants'
 
-export const addImage = title => {
+export const addImage = (id, originalName, filename, timestamp) => {
     return {
         type: ADD_IMAGE,
-        id: uuid.v4(),
-        timestamp: new Date(),
-        title: title
+        id: id,
+        filename: filename,
+        originalName: originalName,
+        timestamp: timestamp,
     }
 }
 
@@ -16,4 +16,13 @@ export const rateImage = (id, rate) => {
         id: id,
         rate: rate
     }
+}
+
+
+
+function requestPosts(subreddit) {
+  return {
+    type: REQUEST_POSTS,
+    subreddit
+  }
 }

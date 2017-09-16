@@ -1,20 +1,28 @@
-import { combineReducers } from 'redux'
-import { ADD_IMAGE, RATE_IMAGE } from '../utils/constants'
+import { combineReducers, compose } from 'redux'
+import { ADD_IMAGE, RATE_IMAGE, RECIEVE_IMAGES } from '../utils/constants'
+import { toArray, toObj, wrapEntity } from '../utils/helpers'
 
 const entities = (state = {}, action) => {
     switch (action.type) {
+        case RECIEVE_IMAGES:
         case ADD_IMAGE:
         case RATE_IMAGE:
-            return images(state.images)
+            return { ...state, images: images(state.images, action) }
         default:
             return state
     }
 }
 
-const images = (state = [], action) => {
+const images = (state = {}, action) => {
     switch (action.type) {
+        case RECIEVE_IMAGES:
+            return state
+
         case ADD_IMAGE:
-            return [...state, ...image({}, action)]
+            return wrapEntity(state, array => {
+                return [...array, image({}, action)]
+            })
+
         case RATE_IMAGE:
             return state.map(item => image(item, action))
         default:
@@ -27,29 +35,29 @@ const image = (state = {}, action) => {
         case ADD_IMAGE:
             return {
                 id: action.id,
-                title: action.title,
-                timestamp: action.timestamp || new Date(),
-                rating: 0
+                originalName: action.oniginalName,
+                timestamp: action.timestamp,
+                rates: []
             }
         case RATE_IMAGE:
             return state.id !== action.id
                 ? state
-                : { ...state, rating: action.rating }
+                : { ...state, rates: [...state.rates, action.rate] }
         default:
             return state
     }
 }
 
 const displayImages = (state = [], action) => {
-	switch (action.type) {
-		default:
-		return state
-	}
+    switch (action.type) {
+        case ADD_IMAGE:
+            return [...state, action.id]
+        default:
+            return state
+    }
 }
-
-
 
 export default combineReducers({
     entities: entities,
-	displayImages: displayImages,
+    displayImages: displayImages
 })
