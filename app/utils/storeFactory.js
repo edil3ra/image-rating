@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import reducers from '../reducers'
-import initialState from './initialState'
+const initialState = require('./initialState.json')
+
 
 const logger = store => next => action => {
     let result

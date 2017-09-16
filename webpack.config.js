@@ -53,7 +53,7 @@ module.exports = {
 			template: __dirname + '/app/index.html',
 		}),
 		new webpack.HotModuleReplacementPlugin({
-			multiStep: true
+			// multiStep: true // toogle it make it crash
 		}),
 		new webpack.ProvidePlugin({
 			$: 'jquery',

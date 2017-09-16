@@ -11,9 +11,9 @@ export default class App extends React.Component {
         this.state = {}
         this.onDrop = this.onDrop.bind(this)
 
-		fetchImages().then(response => {
-			console.log(response.text())
-		})
+		// fetchImages().then(response => {
+		// 	console.log(response.text())
+		// })
 		
     }
 

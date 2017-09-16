@@ -2,7 +2,7 @@
   Image-rating is a small application where anybody can upload images and rate they favorite ones
 
 * Install  
-  npm install
+  npm install -- install dependencies
   npm start -- for developing
   npm build -- for production 
   python generate_db.py (fill the database with random values you need python)
