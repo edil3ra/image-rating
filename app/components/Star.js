@@ -16,9 +16,9 @@ const Star = ({ filled, onClick = f => f }) => {
     )
 }
 
-Image.propTypes = {
+Star.propTypes = {
     filled: PropTypes.bool.isRequired,
-    onClick: Promise.func
+    onClick: PropTypes.func
 }
 
 export default Star
