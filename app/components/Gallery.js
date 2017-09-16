@@ -6,7 +6,7 @@ import Star from './Star'
 import {
     DEFAULT_GALLERY_IMAGE_WIDTH,
     DEFAULT_GALLERY_IMAGE_HEIGHT,
-    DEFAULT_GALLERY_COLUMN
+    DEFAULT_COLUMN_ROW_SIZE
 } from '../utils/constants'
 
 const Gallery = ({ images }) => {
@@ -43,11 +43,21 @@ const Gallery = ({ images }) => {
     // }
 
     const renderGallery = images.map(({ id, filename, rates }) => {
-		const column = `col s${DEFAULT_GALLERY_COLUMN}`
+        const column = `col s${DEFAULT_COLUMN_ROW_SIZE}`
         return (
             <div key={id} className={column}>
-                {renderImage({ filename: filename })}
-                {renderStar({ filled: true })}
+                <div className="card">
+                    <div className="card-image">
+                        <div>{renderImage({ filename: filename })}</div>
+                    </div>
+                    <div className="card-content">
+                        <div>{renderStar({ filled: true })}</div>
+                        <div>{renderStar({ filled: true })}</div>
+                        <div>{renderStar({ filled: true })}</div>
+                        <div>{renderStar({ filled: true })}</div>
+                        <div>{renderStar({ filled: true })}</div>
+                    </div>
+                </div>
             </div>
         )
     })
