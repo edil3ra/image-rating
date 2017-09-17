@@ -1,47 +1,49 @@
 * Introduction
   Image-rating is a small application where anybody can upload images and rate they favorite ones.
+
   The application is in beta and will considerably change if I keep working on it
   
-
 * Install  
   npm install -- install dependencies
-  npm start -- for developing
+
+  npm Tstart -- for developing
+
   npm run prod -- for production 
+
   node server/index.js -- to run the server in production
 
 * Command to fill the database with images and rates them
   node server/index.js (launch the node server)
-  python generate_db.py (fill the database with random values need python)
 
+  python generate_db.py (fill the database with random values need python)
 
 
 * Technical side
 ** backend
 *** express
-	I choosed express for the server to create a small restfull api and store files, it's a good choice for a small application like this.
-	The database is one json file, I used locki to store collection to my db.
-	There is no processing on the images, so somebody could drop a 1G file.
-	In a real app, a service like cloudinary should be used to store files.
+	+ I choosed express for the server to create a small restfull api and store files, it's a good choice for a small application like this.
+	+ The database is one json file, I used locki to store collection to my db.
+	+ There is no processing on the images, so somebody could drop a 1G file.
+	+ In a real app, a service like cloudinary should be used to store files.
   
 ** front
 *** Materialize
    I picked materialize, it is one of the fastest way to get a good looking web app without too much work.
 
 *** React
-   I choosed react, it's a very good to create web app.
-   The dropzone is handle through a react-dropzone.
-   All react components are statless.
-   states are managed through react-redux (small library to link state to props)
+  + I choosed react, it's a very good to create web app.
+  + The dropzone is handle through a react-dropzone.
+  + All react components are statless.
+  + states are managed through react-redux (small library to link state to props)
 
 *** Redux
-   I choose redux to manage all the state of the app, it's overkill for smal project like this but redux is really good to manage external state.
-   I used redux-thunk to handle api call
+   + I choose redux to manage all the state of the app, it's overkill for smal project like this but redux is really good to manage external state.
+   + I used redux-thunk to handle api call
    
 
-
 * Evolution
-  I planning to do a component that propose an image to the user and let him rated, so he doesn't have to browse what he want to rated or not.
-  The user will have a tempory profile where he can upload one image.
-  anonymous user will rated other anonymous user image.
-  anonmyous user profile will be updated as soon as someone rated there image.
+  + I planning to do a component that propose an image to the user and let him rated, so he doesn't have to browse what he want to rated or not.
+  + The user will have a tempory profile where he can upload one image.
+  + anonymous user will rated other anonymous user image.
+  + anonmyous user profile will be updated as soon as someone rated there image.
 
