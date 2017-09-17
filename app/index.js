@@ -5,10 +5,13 @@ import App from './components/App'
 import * as actions from './actions'
 import storeFactory from './utils/storeFactory'
 import { Provider } from 'react-redux'
+window.jQuery = window.$ = require('jquery')
+
 
 import 'materialize-css/dist/css/materialize.css'
 import 'materialize-css/dist/js/materialize'
 import './style.css'
+
 
 $(document).ready(function() {
     $('.materialboxed').materialbox()
