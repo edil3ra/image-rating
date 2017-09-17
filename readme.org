@@ -6,7 +6,7 @@
 * Install  
   npm install -- install dependencies
 
-  npm Tstart -- for developing
+  npm start -- for developing
 
   npm run prod -- for production 
 
@@ -28,7 +28,7 @@
   
 ** front
 *** Materialize
-   I picked materialize, it is one of the fastest way to get a good looking web app without too much work.
+   + I picked materialize, it is one of the fastest way to get a good looking web app without too much work.
 
 *** React
   + I choosed react, it's a very good to create web app.
