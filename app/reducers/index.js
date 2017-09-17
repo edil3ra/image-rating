@@ -5,9 +5,10 @@ import {
     DELETE_IMAGE,
     REQUEST_IMAGES,
     REQUEST_IMAGE_UPDATE,
-    RECIEVE_IMAGES
+    RECIEVE_IMAGES,
+	RESET_FETCH
 } from '../utils/constants'
-import { toArray, toObj, wrapEntity, omit } from '../utils/helpers'
+import { toArray, toObj, wrapEntity, omit, addIfNotExist } from '../utils/helpers'
 
 const entities = (state = {}, action) => {
     switch (action.type) {
@@ -65,13 +66,30 @@ const isFetching = (
             return { ...state, updateImage: true }
         case UPDATE_IMAGE:
             return { ...state, updateImage: false }
+        case RESET_FETCH:
+            return {
+                ...state,
+                [action.name]: false
+            }
+        default:
+            return state
+    }
+}
 
+const user = (state = { imagesRatedId: [] }, action) => {
+    switch (action.type) {
+        case UPDATE_IMAGE:
+            return {
+                ...state,
+                imagesRatedId: addIfNotExist(state.imagesRatedId, action.image.id) 
+            }
         default:
             return state
     }
 }
 
 export default combineReducers({
+    user: user,
     entities: entities,
     displayImages: displayImages,
     isFetching: isFetching

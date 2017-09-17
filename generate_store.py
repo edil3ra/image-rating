@@ -38,7 +38,8 @@ def main():
     entities = parse_entities()
     display_images = [key for key in entities['images']]
     isFetching = {
-        'image': False,
+        'fetchImages': False,
+        'updateImage': False,
     }
     
     state = {

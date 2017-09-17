@@ -5,7 +5,7 @@ export const fetchAll = uri => {
     return fetch(uri, {
         method: 'GET',
         headers: {
-			'Content-Type': 'application/json'
+            'Content-Type': 'application/json'
         }
     }).then(
         response => response.json(),
@@ -17,7 +17,7 @@ export const fetchSingle = (uri, id) => {
     return fetch(`${uri}/${id}`, {
         method: 'GET',
         headers: {
-			'Content-Type': 'application/json'
+            'Content-Type': 'application/json'
         }
     }).then(
         response => response.json(),
@@ -29,7 +29,7 @@ export const fetchPut = (uri, id, body) => {
     return fetch(`${uri}/${id}`, {
         method: 'PUT',
         headers: {
-			'Content-Type': 'application/json'
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(body)
     }).then(
@@ -54,4 +54,8 @@ export const omit = (obj, key) => {
 
 export const wrapEntity = (obj, callback = f => f, key = 'id') => {
     return toObj(callback(toArray(obj)), key)
+}
+
+export const addIfNotExist = (arr, element) => {
+    return arr.indexOf(element) === -1 ? [...arr, element] : arr
 }

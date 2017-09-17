@@ -8,6 +8,7 @@ import {
     REQUEST_IMAGE,
 	REQUEST_IMAGE_UPDATE,
     RECIEVE_IMAGES,
+	RESET_FETCH
 } from '../utils/constants'
 
 const IMAGE_URI = '/api/images'
@@ -59,6 +60,13 @@ export const recieveImages = images => {
     }
 }
 
+export const resetFetch = name => {
+	return {
+		type: RESET_FETCH,
+		name: name
+	}
+}
+
 
 export const fetchImages = () => {
     return function(dispatch) {
@@ -78,11 +86,17 @@ export const fetchImage = id => {
     }
 }
 
+
 export const putImage = (id, body) => {
-    return function(dispatch) {
-        dispatch(requestImageUpdate())
-        return fetchPut(IMAGE_URI, id, body).then(json => {
-            dispatch(updateImage(json))
-        })
+    return function(dispatch, getState) {
+		if(!getState().isFetching.updateImage) {
+			dispatch(requestImageUpdate())
+			return fetchPut(IMAGE_URI, id, body).then(json => {
+				dispatch(updateImage(json))
+			}, error => {
+				dispatch(resetFetch('updateImage'))
+				return Promise.resolve()
+			})
+		}
     }
 }
