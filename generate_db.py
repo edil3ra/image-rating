@@ -51,7 +51,7 @@ def put_images():
         time.sleep(0.2)
         print('+' * (i + 1) + '-' * (len(rates) - i - 1))
         requests.put('{}/{}'.format(url, i + 1), json={'rates': rate})
-    print('end rating randamization')
+    print('end rating randmization')
 
 
 def main():

@@ -1,3 +1,19 @@
 .cursor-hover:hover {
-	cursor: pointer !important
+	cursor: pointer !important;
 }
+
+.dropzone {
+	width: 350px;
+	height: 350px;
+	border-width: 10px;
+	border-color: rgb(102, 102, 102);
+	border-style: dashed;
+	border-radius: 10px;
+	/* margin: auto; */
+}
+
+.dropzone:hover {
+	border-color: rgb(0, 0, 0);
+	cursor: pointer;
+}
+

@@ -25,6 +25,18 @@ export const fetchSingle = (uri, id) => {
     )
 }
 
+export const fetchPostFile = (uri, body) => {
+    return fetch(uri, {
+        method: 'POST',
+		body: body,
+    }).then(
+        response => response.json(),
+        error => console.log('An error has occured', err)
+    )
+}
+
+
+
 export const fetchPut = (uri, id, body) => {
     return fetch(`${uri}/${id}`, {
         method: 'PUT',

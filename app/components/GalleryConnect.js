@@ -1,19 +1,19 @@
 import React from 'react'
 import Gallery from './Gallery'
 import { connect } from 'react-redux'
-import { putImage } from '../actions'
+import { fetchPutImage } from '../actions'
 
 const mapStateToProps = (state, props) => {
     const images = state.entities.images
     const imagesIndexs = state.displayImages
-    const imagesGallery = imagesIndexs.map(id => images[id])
+    const imagesGallery = imagesIndexs.map(id => images[id]).reverse()
     return { images: imagesGallery }
 }
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
         rateImage: (id, prevRates, rateToAdd) => {
-            dispatch(putImage(id, {rates: [...prevRates, rateToAdd]}))
+            dispatch(fetchPutImage(id, {rates: [...prevRates, rateToAdd]}))
         }
     }
 }

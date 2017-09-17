@@ -2,10 +2,11 @@
 
 import requests
 import json
+import sys
+
 
 SERVERNAME = 'http://localhost:8080'
 IMAGES_URI = 'api/images'
-
 initial_state_path = './app/utils/initialState.json'
 
 
@@ -31,7 +32,7 @@ def parse_images(images):
 
 def parse_entities():
     images = parse_images(get_images())
-    return {'images': images}
+    return {'images': []}
 
 
 def main():

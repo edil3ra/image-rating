@@ -4,8 +4,14 @@
 * Install  
   npm install -- install dependencies
   npm start -- for developing
-  npm build -- for production 
-  python generate_db.py (fill the database with random values you need python)
+  npm run prod -- for production 
+
+* database fetch
+  node server/index.js (launch the node server)
+  python generate_db.py (fill the database with random values need python)
+  python generate_store.py (fill the database with random values need python)
+
+
 
 * Technical side
 ** backend
@@ -35,13 +41,16 @@ store.dispatch(actions.updateImage({id: 11, filename: 'filenameUpdate', original
 
 store.dispatch(actions.fetchImages())
 store.dispatch(actions.fetchImage(1))
-store.dispatch(actions.putImage({id: 1, rates:[1, 2, 3, 4, 19, 2, 3]}))
+store.dispatch(actions.fetchPostImage(id: 1, rates:[1, 2, 3, 4, 19, 2, 3]))
+store.dispatch(actions.fetchPutImage(id: 1, rates:[1, 2, 3, 4, 19, 2, 3]))
 
 
 
 
 ** api test with httpie
    http post :8080/api/images image@./images_mock/24888793474_0c72120d22_m.jpg --form && http post :8080/api/images image@./images_mock/36674393256_0bf9e8b68f_m.jpg --form && http post :8080/api/images image@./images_mock/4618786477_b6cea108fb_z.jpg --form && http post :8080/api/images image@./images_mock/35909960083_468dfe33d4_z.jpg --form && http post :8080/api/images image@./images_mock/36674393436_4ea3a9bc5b_z.jpg --form && http post :8080/api/images image@./images_mock/5503173238_061a4e233d_m.jpg --form && http post :8080/api/images image@./images_mock/36325395070_6c23299b43_z.jpg --form && http post :8080/api/images image@./images_mock/36676372256_9357fd5f04_z.jpg --form && http post :8080/api/images image@./images_mock/36585352871_2095afa289_m.jpg --form && http post :8080/api/images image@./images_mock/36677993176_07857a65fd_z.jpg --form
+
+ http post :8080/api/images image@./images_mock/24888793474_0c72120d22_m.jpg
 
    http get :3000/api/images 
    http get :3000/api/images/1/stream

@@ -1,14 +1,19 @@
 import fetch from 'isomorphic-fetch'
-import { fetchAll, fetchPut, fetchSingle } from '../utils/helpers'
+import {
+    fetchAll,
+    fetchPut,
+    fetchSingle,
+    fetchPostFile
+} from '../utils/helpers'
 import {
     ADD_IMAGE,
     UPDATE_IMAGE,
     DELETE_IMAGE,
     REQUEST_IMAGES,
     REQUEST_IMAGE,
-	REQUEST_IMAGE_UPDATE,
+    REQUEST_IMAGE_UPDATE,
     RECIEVE_IMAGES,
-	RESET_FETCH
+    RESET_FETCH
 } from '../utils/constants'
 
 const IMAGE_URI = '/api/images'
@@ -46,7 +51,6 @@ export const requestImage = () => {
     }
 }
 
-
 export const requestImageUpdate = () => {
     return {
         type: REQUEST_IMAGE_UPDATE
@@ -61,12 +65,11 @@ export const recieveImages = images => {
 }
 
 export const resetFetch = name => {
-	return {
-		type: RESET_FETCH,
-		name: name
-	}
+    return {
+        type: RESET_FETCH,
+        name: name
+    }
 }
-
 
 export const fetchImages = () => {
     return function(dispatch) {
@@ -86,17 +89,30 @@ export const fetchImage = id => {
     }
 }
 
-
-export const putImage = (id, body) => {
+export const fetchPutImage = (id, body) => {
     return function(dispatch, getState) {
-		if(!getState().isFetching.updateImage) {
-			dispatch(requestImageUpdate())
-			return fetchPut(IMAGE_URI, id, body).then(json => {
-				dispatch(updateImage(json))
-			}, error => {
-				dispatch(resetFetch('updateImage'))
-				return Promise.resolve()
-			})
-		}
+        if (!getState().isFetching.updateImage) {
+            dispatch(requestImageUpdate())
+            return fetchPut(IMAGE_URI, id, body).then(
+                json => {
+                    dispatch(updateImage(json))
+                },
+                error => {
+                    dispatch(resetFetch('updateImage'))
+                    return Promise.resolve()
+                }
+            )
+        }
+    }
+}
+
+export const fetchPostImage = image => {
+    return function(dispatch, getState) {
+        const formData = new FormData()
+        formData.append('image', image)
+
+        return fetchPostFile(IMAGE_URI, formData).then(json => {
+			
+        })
     }
 }
