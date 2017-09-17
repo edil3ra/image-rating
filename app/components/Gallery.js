@@ -36,7 +36,7 @@ const Gallery = ({ images, rateImage=f=>f }) => {
                   ratesCount
 
         const onClickRate = rate => {
-			rateImage(id, rate)
+			rateImage(id, rates, rate)
         }
 
         return (
