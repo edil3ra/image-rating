@@ -110,9 +110,11 @@ export const fetchPostImage = image => {
     return function(dispatch, getState) {
         const formData = new FormData()
         formData.append('image', image)
-
         return fetchPostFile(IMAGE_URI, formData).then(json => {
-			
+			// wait for the server to create the image this is very ugly right now
+			setTimeout(() => {
+				dispatch(addImage(json))
+			}, 1000)
         })
     }
 }
