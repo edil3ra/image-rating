@@ -6,7 +6,6 @@ import Image from './Image'
 import Gallery from './Gallery'
 import GalleryConnect from './GalleryConnect'
 import DropConnect from './DropConnect'
-window.jQuery = window.$ = require('jquery')
 
 
 
