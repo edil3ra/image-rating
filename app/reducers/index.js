@@ -3,7 +3,8 @@ import {
     ADD_IMAGE,
     UPDATE_IMAGE,
     DELETE_IMAGE,
-	REQUEST_IMAGES,
+    REQUEST_IMAGES,
+    REQUEST_IMAGE_UPDATE,
     RECIEVE_IMAGES
 } from '../utils/constants'
 import { toArray, toObj, wrapEntity, omit } from '../utils/helpers'
@@ -51,12 +52,20 @@ const displayImages = (state = [], action) => {
     }
 }
 
-const isFetching = (state = { image: false }, action) => {
+const isFetching = (
+    state = { fetchImages: false, updateImage: false },
+    action
+) => {
     switch (action.type) {
         case REQUEST_IMAGES:
-            return { ...state, image: true }
+            return { ...state, fetchImages: true }
         case RECIEVE_IMAGES:
-            return { ...state, image: false }
+            return { ...state, fetchImages: false }
+        case REQUEST_IMAGE_UPDATE:
+            return { ...state, updateImage: true }
+        case UPDATE_IMAGE:
+            return { ...state, updateImage: false }
+
         default:
             return state
     }

@@ -124,7 +124,8 @@ app.put('/api/images/:id', function(req, res) {
             }
 
             db.saveDatabase()
-            res.sendStatus(200)
+            res.send(utils.serializeLoki(data))
+            // res.sendStatus(200)
         })
     } catch (err) {
         res.sendStatus(400)

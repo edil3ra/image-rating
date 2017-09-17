@@ -1,6 +1,7 @@
 import React from 'react'
 import Gallery from './Gallery'
 import { connect } from 'react-redux'
+import { updateImage } from '../actions'
 
 const mapStateToProps = (state, props) => {
     const images = state.entities.images
@@ -13,6 +14,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch, props) => {
     return {
         rateImage: (id, rate) => {
+			dispatch()
             console.log(id, rate)
         }
     }
