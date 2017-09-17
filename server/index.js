@@ -1,7 +1,6 @@
 var express = require('express')
 var multer = require('multer')
 var fs = require('fs')
-var cors = require('cors')
 var path = require('path')
 var Loki = require('lokijs')
 var utils = require('./utils')
