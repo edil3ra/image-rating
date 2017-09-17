@@ -45,27 +45,3 @@
   anonymous user will rated other anonymous user image.
   anonmyous user profile will be updated as soon as someone rated there image.
 
-* helpers
-** actions
-   store.dispatch(actions.addImage({id: 11, filename: 'filename', originalname: 'originalname', rate: [], timestamp: 100}))
-
-   store.dispatch(actions.updateImage({id: 11, filename: 'filenameUpdate', originalname: 'originalnameUpdate', rate: [1, 2], timestamp: 100}))
-
-   store.dispatch(actions.fetchImages())
-   store.dispatch(actions.fetchImage(1))
-   store.dispatch(actions.fetchPostImage(id: 1, rates:[1, 2, 3, 4, 19, 2, 3]))
-   store.dispatch(actions.fetchPutImage(id: 1, rates:[1, 2, 3, 4, 19, 2, 3]))
-
-
-
-
-** api test with httpie
-   http post :8080/api/images image@./images_mock/24888793474_0c72120d22_m.jpg
-   http get :3000/api/images 
-   http get :3000/api/images/1/stream
-   http get :3000/api/images/1
-   http put :3000/api/images/1 rates:='[1, 3, 4, 2]'
-   http delete :3000/api/images/1
-  
-
-
